@@ -1,0 +1,10 @@
+.jumbotron {
+  margin-top: 20px;
+  padding: 30px 30px;
+  background-color: rgb(233, 233, 233, 0.8);
+  border-radius: 5px;
+}
+
+.btn {
+  margin-top: 20px;
+}
