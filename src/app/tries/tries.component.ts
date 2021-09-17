@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnChanges, Input } from '@angular/core';
+
+import { Heart } from '../shared/heart.model';
 
 @Component({
   selector: 'app-tries',
@@ -6,10 +8,18 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./tries.component.css'],
 })
 export class TriesComponent implements OnInit {
-  public noFillHeart: String = '/assets/coracao_vazio.png';
-  public completeHeart: String = '/assets/coracao_cheio.png';
+  @Input() public tries: number = 3;
+  public hearts: Heart[] = [new Heart(true), new Heart(true), new Heart(true)];
 
   constructor() {}
 
   ngOnInit(): void {}
+
+  ngOnChanges(): void {
+    if (this.tries !== this.hearts.length) {
+      const index = this.hearts.length - this.tries - 1;
+
+      this.hearts[index].full = false;
+    }
+  }
 }

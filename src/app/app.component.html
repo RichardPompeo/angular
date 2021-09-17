@@ -1,3 +1,26 @@
 <!--The whole content below can be removed with the new code.-->
 <app-top></app-top>
-<app-panel></app-panel>
+<div *ngIf="running; else winGame">
+  <app-panel (finishGame)="finishGame($event)"></app-panel>
+</div>
+
+<ng-template #winGame>
+  <div
+    style="margin-top: 100px; text-align: center"
+    *ngIf="type === 'win'; else loseGame"
+  >
+    <h1 style="color: green">Você venceu!</h1>
+    <button class="btn btn-primary" (click)="restartGame()">
+      Jogar novamente
+    </button>
+  </div>
+</ng-template>
+
+<ng-template #loseGame>
+  <div style="margin-top: 100px; text-align: center">
+    <h1 style="color: red">Você perdeu!</h1>
+    <button class="btn btn-primary" (click)="restartGame()">
+      Jogar novamente
+    </button>
+  </div>
+</ng-template>
